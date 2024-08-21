@@ -1,0 +1,137 @@
+
+<!-- your-component.component.html -->
+ <!-- <div *ngIf="!employees.length">No Employees</div> -->
+<div class="modal fade" #noDataModal id="noDataModal" tabindex="-1" aria-labelledby="noDataModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title text-center m-auto ml-2" id="noDataModalLabel">No Data Found</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><a routerLink="/add-employee" class="text-white text-decoration-none">Add New Employee</a></button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+<div *ngIf="employees.length">
+	<h2 class="p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle">Employee List</h2>
+	<table class="table m-auto table-bordered w-75">
+		<thead>
+			<tr>
+				<th scope="col">Employee ID</th>
+				<th scope="col">Profile Picture</th>
+				<th scope="col">NAME</th>
+				<th scope="col">EMAIL</th>
+				<th scope="col">POSITION</th>
+				<th scope="col">ACTIONS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let employee of employees" style="text-align: center;">
+				<th scope="row">{{employee.id}}</th>
+				<td><img [src]="employee.profilePicture" alt="profilePicture"></td>
+				<td>{{employee.name}}</td>
+				<td>{{employee.email}}</td>
+				<td>{{employee.position}}</td>
+				<td class="d-flex justify-content-center buttons">
+					<button class="bg-success border-0"><a [routerLink]="['/employee', employee.id]" class="text-decoration-none text-white">View</a></button>
+					<button class="bg-secondary border-0"><a [routerLink]="['/edit-employee', employee.id]" class="text-decoration-none text-white">Edit</a></button>
+					<button (click)="deleteEmployee(employee.id)" class="text-decoration-none text-dark bg-danger text-white border-0">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button [routerLink]="['/add-employee']" class="btn btn-primary d-block m-auto mt-4 text-white text-decoration-none ">
+		<small>Add New Employee</small> 
+	</button>
+</div>
+
+
+
+<!-- Testing the UX -->
+
+<section id="team" class="team section-bg">
+	<div class="container" data-aos="fade-up">
+  
+	  <div class="section-title">
+		<h2>Team</h2>
+		<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+	  </div>
+  
+	  <div class="row">
+  
+		<div class="col-lg-6" [routerLink]="['/employee', employee.id]" *ngFor="let employee of employees" data-aos="zoom-in" data-aos-delay="100">
+		  <div class="member d-flex align-items-start">
+			<div class="pic"><img [src]='employee.profilePicture'  alt="profilePicture"></div>
+			<div class="member-info">
+			  <h4>{{employee.name}}</h4>
+			  <span>{{employee.position}}</span>
+			  <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+			  <div class="social">
+				<a href=""><i class="ri-twitter-fill"></i></a>
+				<a href=""><i class="ri-facebook-fill"></i></a>
+				<a href=""><i class="ri-instagram-fill"></i></a>
+				<a href=""> <i class="ri-linkedin-box-fill"></i></a>
+				<a href=""><i class="ri-mail-fill"></i></a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+  
+		<!-- <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+		  <div class="member d-flex align-items-start">
+			<div class="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" class="img-fluid" alt=""></div>
+			<div class="member-info">
+			  <h4>Sarah Jhonson</h4>
+			  <span>Product Manager</span>
+			  <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+			  <div class="social">
+				<a href=""><i class="ri-twitter-fill"></i></a>
+				<a href=""><i class="ri-facebook-fill"></i></a>
+				<a href=""><i class="ri-instagram-fill"></i></a>
+				<a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+  
+		<div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
+		  <div class="member d-flex align-items-start">
+			<div class="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" class="img-fluid" alt=""></div>
+			<div class="member-info">
+			  <h4>William Anderson</h4>
+			  <span>CTO</span>
+			  <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+			  <div class="social">
+				<a href=""><i class="ri-twitter-fill"></i></a>
+				<a href=""><i class="ri-facebook-fill"></i></a>
+				<a href=""><i class="ri-instagram-fill"></i></a>
+				<a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+  
+		<div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+		  <div class="member d-flex align-items-start">
+			<div class="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" class="img-fluid" alt=""></div>
+			<div class="member-info">
+			  <h4>Amanda Jepson</h4>
+			  <span>Accountant</span>
+			  <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+			  <div class="social">
+				<a href=""><i class="ri-twitter-fill"></i></a>
+				<a href=""><i class="ri-facebook-fill"></i></a>
+				<a href=""><i class="ri-instagram-fill"></i></a>
+				<a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+			  </div>
+			</div>
+		  </div>
+		</div> -->
+  
+	  </div>
+  
+	</div>
+  </section><!-- End Team Section -->

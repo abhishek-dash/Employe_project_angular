@@ -1,0 +1,34 @@
+<!-- src/app/edit-employee/edit-employee.component.html -->
+<h2>Edit Employee</h2>
+<form [formGroup]="employeeForm" (ngSubmit)="updateEmployee()">
+	<label>Name:</label>
+	<input type="text" formControlName="name" required>
+	<div *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
+		Name is required.
+	</div>
+
+	<label>Email:</label>
+	<input type="email" formControlName="email" required>
+	<div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+		Enter a valid email.
+	</div>
+
+	<label>Position:</label>
+	<input type="text" formControlName="position" required>
+	<div *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched">
+		Position is required.
+	</div>
+
+	<!-- current profile picture -->
+	<div *ngIf="employeeForm.get('profilePicture')?.value">
+		<label>Current Profile Picture:</label>
+		<img [src]="employeeForm.get('profilePicture')?.value" alt="profilePicture" width="150">
+	</div>
+
+	<!-- New profile picture  -->
+	 <label>New Profile Picture</label>
+	 <input type="file" (change)="onSelectedFile($event)">
+	
+
+	<button type="submit" [disabled]="employeeForm.invalid">Update Employee</button>
+</form>

@@ -1,0 +1,42 @@
+body {
+    background-color: #eee;
+}
+
+h2{
+  text-align: center;
+}
+
+form {
+    background-color: #fff;
+    border: solid 1px lightgrey;
+    border-radius: 5px;
+    padding: 30px 15px;
+    max-width: 400px;
+    margin: 50px auto 0;
+  }
+  
+  form > div,input {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  label span {
+    color: red;
+  }
+
+  input, textarea,button {
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    padding: 10px 20px 10px 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input[type="submit"],button {
+    cursor: pointer;
+  }
