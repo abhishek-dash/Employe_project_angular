@@ -1,0 +1,27 @@
+<!-- src/app/add-employee/add-employee.component.html -->
+<h2 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle">Add New Employee</h2>
+<form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+	<label>Name: <span>*</span></label>
+	<input type="text" formControlName="name" required>
+	<div *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
+		Name is required.
+	</div>
+
+	<label>Email: <span>*</span></label>
+	<input type="email" formControlName="email" required>
+	<div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+		Enter a valid email.
+	</div>
+
+	<label>Position: <span>*</span></label>
+	<input type="text" formControlName="position" required>
+	<div *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched">
+		Position is required.
+	</div>
+
+	<label>Profile Picture:</label>
+	<input type="file" (change)="onFileSelected($event)" required>
+
+	<button type="submit" [disabled]="employeeForm.invalid">Add Employee</button>
+</form>
+

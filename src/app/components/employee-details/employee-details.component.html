@@ -1,0 +1,16 @@
+<!-- src/app/employee-details/employee-details.component.html -->
+<h2 class="p-3 text-center text-primary-emphasis bg-primary-subtle border border-primary-subtle">Employee Details</h2>
+
+<div *ngIf="employee" class="card w-25 m-auto d-flex flex-column align-items-center bg-light text-dark">
+
+	<img [src]="employee.profilePicture"
+	class="img-fluid rounded-circle" alt="">
+	
+	<p><strong>ID:</strong> {{employee.id}}</p>
+	<p><strong>Name:</strong> {{employee.name}}</p>
+	<p><strong>Email:</strong> {{employee.email}}</p>
+	<p><strong>Position:</strong> {{employee.position}}</p>
+	<a [routerLink]="['/edit-employee', employee.id]">Edit the information </a>
+	<p> <mark>Are you sure you want the to delete this employee *</mark></p>
+	<button (click)="deleteEmployee()" class="text-dark bg-danger text-white border-0">Delete</button>
+</div>
